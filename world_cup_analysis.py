@@ -49,7 +49,28 @@ stats_300.to_excel(
     "output/team_stats_300_plus.xlsx",
     index=True
 )
+top15_win = stats_300.sort_values(
+    "win_rate",
+    ascending=False
+).head(15)
 
+plt.figure(figsize=(12, 6))
+
+plt.scatter(
+    top15_win.index,
+    top15_win["win_rate"]
+)
+
+plt.title("Top 15 National Teams by Win Rate (300+ Games)")
+plt.xlabel("National Team")
+plt.ylabel("Win Rate")
+
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+plt.savefig("output/top15_win_rate.png")
+
+plt.show()
 top15 = stats_300.head(15)
 
 plt.figure(figsize=(12,6))
